@@ -18,34 +18,12 @@ public:
         if (list2 == nullptr)
             return list1;
 
-        ListNode *ptr = list1;
-        if (list1->val > list2->val) {
-            ptr = list2;
-            list2 = list2->next;
+        if (list1->val < list2->val) {
+            list1->next = mergeTwoLists(list1->next, list2);
+            return list1;
         } else {
-            list1 = list1->next;
+            list2->next = mergeTwoLists(list1, list2->next);
+            return list2;
         }
-        ListNode *curr = ptr;
-
-        while (list1 && list2) {
-            if (list1->val < list2->val) {
-                curr->next = list1;
-                list1 = list1->next;
-            } else {
-                curr->next = list2;
-                list2 = list2->next;
-            }
-            curr = curr->next;
-
-        }
-
-        if (!list1)
-            curr->next = list2;
-        else
-            curr->next = list1;
-
-        return ptr;
-
-
     }
 };
