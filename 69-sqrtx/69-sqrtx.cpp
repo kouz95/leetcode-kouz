@@ -1,16 +1,25 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        unsigned long long int start = 0;
+        if (x == 0) {
+            return 0;
+        }
+        int start = 1;
+        int end = x;
         
-        while(1) {
-            if (start * start == x)  {
-                return start;
+        while (1) {
+            int middle = start + (end - start) / 2;
+            
+            if (middle <= x / middle && (middle + 1) > x / (middle + 1)) {
+                return middle;
             }
-            else if (start * start > x) {
-                return start - 1;
+            else if (middle > x / middle) {
+                end = middle - 1;
             }
-            start++;
+            else {
+                start = middle + 1;
+            }
+        
         }
         
         return -1;
