@@ -2,10 +2,10 @@
 # @return {Integer}
 def missing_number(nums)
     all_bits = nums.size
-
-    for i in 0..nums.size - 1
-        all_bits ^= i
-        all_bits ^= nums[i]
+    
+    nums.each_with_index do |num, index|
+        all_bits ^= index
+        all_bits ^= num
     end
     
     all_bits
