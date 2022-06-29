@@ -15,13 +15,14 @@ public:
         if (root == NULL) {
             return false;
         }
-        if (root->left == NULL && root->right == NULL && root->val == targetSum) {
+        
+        if (root->left == NULL && root->right==NULL && root->val == targetSum) {
             return true;
         }
         
-        bool left = hasPathSum(root->left, targetSum - root->val);
-        bool right = hasPathSum(root->right, targetSum - root->val);
+        bool leftSide = hasPathSum(root->left, targetSum - root->val);
+        bool rightSide = hasPathSum(root->right, targetSum - root->val);
         
-        return left || right;
+        return leftSide || rightSide;
     }
 };
